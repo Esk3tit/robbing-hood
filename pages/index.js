@@ -1,7 +1,16 @@
-import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
+import Head from 'next/head';
+import clientPromise from '../lib/mongodb';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home({ isConnected }) {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/dashboard');
+  })
+
   return (
     <div className="container">
       <Head>
@@ -209,9 +218,7 @@ export default function Home({ isConnected }) {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+          font-family: 'Montserrat', sans-serif;
         }
 
         * {
