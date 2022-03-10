@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Link from 'next/link';
+import { Heading } from "@chakra-ui/react";
 
 const Box = styled.div`
   padding: 80px 60px;
   background: black;
   bottom: 0;
   width: 100%;
-  position: fixed;
+  margin-top:auto;
 
   @media (max-width: 1000px) {
     padding: 70px 30px;
@@ -53,7 +54,7 @@ const FooterLink = styled.a`
   }
 `;
 
-const Heading = styled.p`
+const HeadingP = styled.p`
   font-size: 24px;
   color: #fff;
   margin-bottom: 40px;
@@ -63,32 +64,32 @@ const Heading = styled.p`
 function Footer() {
   return (
     <Box>
-      <h1 style={{ color: "green", textAlign: "center", marginTop: "-50px" }}>
+      <Heading style={{ color: "green", textAlign: "center", marginTop: "-50px" }}>
         Robbing Hood: Commission-free Stock Viewing App
-      </h1>
+      </Heading>
       <Container>
         <Row>
           <Column>
-            <Heading>About Us</Heading>
+            <HeadingP>About Us</HeadingP>
             <Link href="#"><FooterLink>Aim</FooterLink></Link>
             <Link href="#"><FooterLink>Vision</FooterLink></Link>
             <Link href="#"><FooterLink>Testimonials</FooterLink></Link>
           </Column>
           <Column>
-            <Heading>Services</Heading>
+            <HeadingP>Services</HeadingP>
             <Link href="#"><FooterLink>Writing</FooterLink></Link>
             <Link href="#"><FooterLink>Internships</FooterLink></Link>
             <Link href="#"><FooterLink>Coding</FooterLink></Link>
             <Link href="#"><FooterLink>Teaching</FooterLink></Link>
           </Column>
           <Column>
-            <Heading>Contact Us</Heading>
+            <HeadingP>Contact Us</HeadingP>
             <Link href="#"><FooterLink>Khai Phan</FooterLink></Link>
             <Link href="#"><FooterLink>Scot Rein</FooterLink></Link>
             <Link href="#"><FooterLink>Nelson Van der Lindt</FooterLink></Link>
           </Column>
           <Column>
-            <Heading>Social Media</Heading>
+            <HeadingP>Social Media</HeadingP>
             <Link href="#"><FooterLink>
               <i className="fab fa-facebook-f">
                 <span style={{ marginLeft: "10px" }}>Facebook</span>
