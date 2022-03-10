@@ -1,15 +1,7 @@
 import Head from 'next/head';
 import clientPromise from '../lib/mongodb';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 
 export default function Home({ isConnected }) {
-
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push('/dashboard');
-  })
 
   return (
     <div className="container">

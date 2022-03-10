@@ -2,9 +2,9 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { MenuItems } from './MenuItems';
 import { NavButton } from './NavButton';
+import { Icon } from '@chakra-ui/react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 import styled from '@emotion/styled';
 
@@ -120,7 +120,7 @@ const NavLink = styled.a`
     }
 `;
 
-const MenuIcon = styled.div`
+const MenuIconDiv = styled.div`
     display: none;
 
     @media (max-width: 960px) {
@@ -134,7 +134,7 @@ const MenuIcon = styled.div`
     }
 `;
 
-const HamburgerIcon = styled(FontAwesomeIcon)`
+const MenuIcon = styled(Icon)`
     color: #ffffff;
 `
 
@@ -145,9 +145,9 @@ function Navbar() {
     return (
         <Nav>
             <NavBarLogo className='navbar-logo'>Robbing Hood</NavBarLogo>
-            <MenuIcon className='menu-icon' onClick={() => setMenuClicked(!menuClicked)}>
-                <HamburgerIcon icon={menuClicked ? faXmark : faBars} />
-            </MenuIcon>
+            <MenuIconDiv className='menu-icon' onClick={() => setMenuClicked(!menuClicked)}>
+                <MenuIcon as={menuClicked ? FaTimes : FaBars} />
+            </MenuIconDiv>
             <List className={menuClicked ? 'nav-menu active' : 'nav-menu'}>
                 {MenuItems.map((item, index) => {
                     return (

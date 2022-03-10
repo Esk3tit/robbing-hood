@@ -1,13 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import styled from '@emotion/styled';
 
-import { Heading, Text } from '@chakra-ui/react';
+import { Heading, Text, Link } from '@chakra-ui/react';
 
 const StyledA = styled.a`
-    text-decoration: underline;
     color: #4979ff;
-    cursor: pointer;
 `;
 
 function NotFound() {
@@ -15,7 +13,15 @@ function NotFound() {
     <div className='not-found' style={{ textAlign: "center" }}>
         <Heading as='h1'>L + Ratio + 404 + Cringe</Heading>
         <Heading as='h2' size='lg'>You done diddly done goofed, or that page cannot be found.</Heading>
-        <Text>Go back to <Link href="/dashboard"><StyledA>dashboard</StyledA></Link></Text>
+        <Text>
+            <NextLink href="/dashboard" passHref>
+                <Link>
+                    <StyledA>
+                        Go back to dashboard
+                    </StyledA>
+                </Link>
+            </NextLink>
+        </Text>
     </div>
   );
 }
