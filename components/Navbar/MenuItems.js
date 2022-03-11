@@ -6,7 +6,8 @@ export const MenuItems = [
     },
     {
         title: 'Search',
-        url: '/dashboard',
+        url: '/search',
+        cName: 'nav-links'
     },
     {
         title: 'Account',
