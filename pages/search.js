@@ -23,7 +23,7 @@ const SearchDiv = styled.div`
     padding: 10px;
 `;
 
-function search() {
+function Search() {
 
     // https://stackoverflow.com/questions/61040790/userouter-withrouter-receive-undefined-on-query-in-first-render
     const router = useRouter();
@@ -84,4 +84,4 @@ function search() {
     )
 }
 
-export default search;
+export default Search;
