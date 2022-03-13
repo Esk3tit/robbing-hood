@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import useStockNews from '../hooks/useStockNews';
 import { 
   Flex,
   FormControl,

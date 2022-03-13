@@ -18,6 +18,7 @@ import {
     Heading
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import useStockProfile from '../hooks/useStockProfile';
 
 const SearchDiv = styled.div`
     padding: 10px;
@@ -29,25 +30,10 @@ function Search() {
     const router = useRouter();
     const query = router.query.q;
     const [ inputQuery, setInputQuery ] = useState(query || "");
-    const [ tickerData, setTickerData ] = useState({});
 
-    // Refactor to use useSWR hook and call API route so that we can use env variables for API key in API route
-    // rather than forward env vars in next config!!!!
-    useEffect(() => {
-        if (query) {
-            async function fetchSearchResults() {
-                console.log("== Fetching search results for symbol:", query);
-                setTickerData(null);
-                const response = await fetch(
-                    `https://finnhub.io/api/v1/stock/profile2?symbol=${query}&token=${process.env.finnhubApiKey1}`
-                );
-                const responseBody = await response.json();
-                setTickerData(responseBody || {});
-            }
-    
-            fetchSearchResults();
-        }
-    }, [ query ]);
+    console.log(`Query Param: ${query}`);
+
+    const { profile } = useStockProfile(query);
 
     return (
         <SearchDiv>
@@ -69,15 +55,14 @@ function Search() {
                     <FormHelperText>Ticker symbols or stock symbols are arrangements of symbols or characters representing specific assets or securities listed on a stock exchange or traded publicly (Ex. Apple = AAPL).</FormHelperText>
                 </FormControl>
             </form>
-            {tickerData && Object.keys(tickerData).length > 0 && 
+            {profile && 
             <div>
-                <Text>Retrieved {tickerData.ticker} data!</Text>
-                <Heading mt={4}>{tickerData.ticker}</Heading>
-                <Heading size="md">{tickerData.name}</Heading>
-                <Text>Exchange: {tickerData.exchange}</Text>
-                <Text>Currency: {tickerData.currency}</Text>
-                <Text>Industry: {tickerData.finnhubIndustry}</Text>
-                <Text>IPO: {tickerData.ipo}</Text>
+                <Heading mt={4}>{profile.ticker}</Heading>
+                <Heading size="md">{profile.name}</Heading>
+                <Text>Exchange: {profile.exchange}</Text>
+                <Text>Currency: {profile.currency}</Text>
+                <Text>Industry: {profile.finnhubIndustry}</Text>
+                <Text>IPO: {profile.ipo}</Text>
             </div>
             }
         </SearchDiv>
