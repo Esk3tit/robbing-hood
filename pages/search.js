@@ -27,7 +27,9 @@ import {
     Tr,
     Th,
     Td,
-    TableCaption
+    TableCaption,
+    Divider,
+    Container 
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import useStockProfile from '../hooks/useStockProfile';
@@ -97,12 +99,16 @@ function Search() {
                     <StatLabel>Current Price</StatLabel>
                     <StatNumber>${quote.c}</StatNumber>
                     <StatHelpText>
-                        <StatArrow type={quote.d > 0 ? 'increase' : 'decrease'} />
-                        ${quote.d}
-                    </StatHelpText>
-                    <StatHelpText>
-                    <StatArrow type={quote.dp > 0 ? 'increase' : 'decrease'} />
-                        {quote.dp}%
+                        <HStack height='50px'>
+                            <div>
+                                <StatArrow type={quote.d > 0 ? 'increase' : 'decrease'} />
+                                ${quote.d}
+                            </div>
+                            <div>
+                                <StatArrow type={quote.dp > 0 ? 'increase' : 'decrease'} />
+                                {quote.dp}%
+                            </div>
+                        </HStack>
                     </StatHelpText>
                 </Stat>
                 <Stat>
