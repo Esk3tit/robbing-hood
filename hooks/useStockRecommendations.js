@@ -21,18 +21,18 @@ async function fetcher(url, ticker) {
     return await res.json();
 }
 
-function useStockPeers(ticker) {
+function useStockRecommendations(ticker) {
     const { data, error } = useSWR(
-        ['/api/peerfetcher', ticker],
+        ['/api/recommendationsfetcher', ticker],
         fetcher,
         { refreshInterval: 60000 }
     );
 
     return {
-        peers: data,
+        recommendations: data,
         isLoading: !error && !data,
         isError: error
     }
 }
 
-export default useStockPeers;
+export default useStockRecommendations;
