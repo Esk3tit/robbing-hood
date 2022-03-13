@@ -15,10 +15,17 @@ import {
     StatHelpText,
     StatArrow,
     StatGroup,
-    Heading
+    Heading,
+    List,
+    ListItem,
+    ListIcon,
+    Link
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import useStockProfile from '../hooks/useStockProfile';
+import useStockPeers from '../hooks/useStockPeers';
+import { FaSearch } from 'react-icons/fa';
+import NextLink from 'next/link';
 
 const SearchDiv = styled.div`
     padding: 10px;
@@ -32,8 +39,10 @@ function Search() {
     const [ inputQuery, setInputQuery ] = useState(query || "");
 
     console.log(`Query Param: ${query}`);
+    console.log(`Input Query: ${inputQuery}`)
 
     const { profile } = useStockProfile(query);
+    const { peers } = useStockPeers(query);
 
     return (
         <SearchDiv>
@@ -64,6 +73,24 @@ function Search() {
                 <Text>Industry: {profile.finnhubIndustry}</Text>
                 <Text>IPO: {profile.ipo}</Text>
             </div>
+            }
+            {peers &&
+            <>
+                <Text>
+                    Related stocks:
+                </Text>
+                <List>
+                    {peers.map((peer, index) => (
+                        <ListItem key={index}>
+                            <ListIcon as={FaSearch} />
+                            <NextLink href={`/search?q=${peer}`} passHref>
+                                <Link>{peer}</Link>
+                            </NextLink>
+                        </ListItem>
+                    ))}
+                </List>
+            </>
+                
             }
         </SearchDiv>
     )
