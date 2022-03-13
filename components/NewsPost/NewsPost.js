@@ -8,6 +8,7 @@ import {
   useColorModeValue,
   LinkBox,
   LinkOverlay,
+  Flex,
 } from '@chakra-ui/react';
 
 export default function NewsPost({ category, datetime, headline, image, related, source, summary, url }) {
@@ -15,9 +16,10 @@ export default function NewsPost({ category, datetime, headline, image, related,
     const postDate = new Date(datetime * 1000).toLocaleString("en-US", { month: "short", day: "2-digit", year: "numeric"});
 
     return (
-        <LinkBox>
-            <LinkOverlay href={url} isExternal>
-                <Center py={6}>
+        
+        <Center py={6}>
+            <LinkBox>
+                <LinkOverlay href={url} isExternal>
                     <Box
                         maxW={'445px'}
                         w={'full'}
@@ -59,17 +61,16 @@ export default function NewsPost({ category, datetime, headline, image, related,
                             {summary}
                         </Text>
                         </Stack>
-                        <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-                        <Text color={'gray.500'}>Related: {related ? related : "None"}</Text>
-                        <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                            <Text fontWeight={600}>{source}</Text>
-                            <Text color={'gray.500'}>{postDate}</Text>
-                        </Stack>
-                        </Stack>
+                        <Flex mt={6} direction={'row'} spacing={4} align={'center'} justify='space-around'>
+                            <Text color={'gray.500'}>Related: {related ? related : "None"}</Text>
+                            <Stack direction={'column'} spacing={0} fontSize={'sm'}>
+                                <Text fontWeight={600}>{source}</Text>
+                                <Text color={'gray.500'}>{postDate}</Text>
+                            </Stack>
+                        </Flex>
                     </Box>
-                </Center>
-            </LinkOverlay>
-        </LinkBox>
-        
+                </LinkOverlay>
+            </LinkBox>
+        </Center>
     );
 }
