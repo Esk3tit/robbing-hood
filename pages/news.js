@@ -30,6 +30,7 @@ function News({ news }) {
       }
     });
     const resBody = await res.json();
+    console.log(resBody);
     setNewsPosts(resBody);
   }
 
@@ -64,7 +65,7 @@ function News({ news }) {
       </Center>
       {newsPosts ? 
         <Flex direction="row" wrap="wrap" justify="space-evenly">
-          { newsPosts.map(post => <NewsPost key={post.id} {...post} />)}
+          {newsPosts.map(post => <NewsPost key={post.id} {...post} />)}
         </Flex>
           : 
         <Center>
