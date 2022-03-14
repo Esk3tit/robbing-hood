@@ -52,16 +52,10 @@ function Search() {
     const query = router.query.q;
     const [ inputQuery, setInputQuery ] = useState(query || "");
 
-    console.log(`Query Param: ${query}`);
-    console.log(`Input Query: ${inputQuery}`);
-
     const { profile } = useStockProfile(query);
     const { peers } = useStockPeers(query);
     const { quote } = useStockQuote(query);
     const { recommendations } = useStockRecommendations(query);
-
-    console.log(`Quote: ${JSON.stringify(quote)}`);
-    console.log(`Recommendations: ${JSON.stringify(recommendations)}`);
 
     return (
         <SearchDiv>
