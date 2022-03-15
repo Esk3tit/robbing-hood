@@ -18,6 +18,7 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import NextLink from 'next/link';
 
 async function createUser(first, last, email, password) {
   const response = await fetch('/api/auth/signup', {
@@ -77,7 +78,7 @@ function SignUp() {
       router.push("/users/signin");
     } catch (error) {
       console.log(error);
-      alert("Unable to create account!");
+      alert("Unable to create account! The email likely already tied to an account!");
     }
   
   }
@@ -158,7 +159,7 @@ function SignUp() {
               </Stack>
               <Stack pt={6}>
                 <Text align={"center"}>
-                  Already a user? <Link color={"blue.400"}>Login</Link>
+                  Already a user? <NextLink href='/users/signin' passHref><Link color={"blue.400"}>Login</Link></NextLink>
                 </Text>
               </Stack>
             </Stack>
